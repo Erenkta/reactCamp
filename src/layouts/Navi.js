@@ -4,14 +4,17 @@ import {Container, Menu } from "semantic-ui-react";
 import CartSummary from "./CartSummary";
 import SignedIn from "./SignedIn";
 import SignedOut from "./SignedOut";
+import { useNavigate} from "react-router-dom"
 
 export default function Navi() {
   const [isAuthenticated,setIsAuthenticated] = useState(false)
+  const navigate = useNavigate()
 
   function handleSign() {
     setIsAuthenticated(!isAuthenticated) //Bunu kendim düşündüm
+    isAuthenticated && navigate("/") // signedOut'ta isem
   }
-  
+ 
   return (
     <div className="App">
       <Menu inverted size="huge" fixed="top">

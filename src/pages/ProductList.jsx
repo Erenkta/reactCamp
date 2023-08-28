@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from "react";
 import { Icon, Menu, Table } from 'semantic-ui-react'
 import ProductService from "../services/productService"; 
+import { Link } from "react-router-dom";
 
 export default function ProductList() {
 
@@ -10,6 +11,7 @@ export default function ProductList() {
     productService.getProducts().then(result => setProducts(result.data.data)) // result.data demek bizim JSON objemizi döndür demek. 
     //Onun içindeki data array'ini de almak için data.data yaptık
   },[])
+
 
   return (
     <div>
@@ -28,7 +30,7 @@ export default function ProductList() {
           {
             products.map(products => (
               <Table.Row key={products.id}> {/* Hepsi unique olsun diye map'te key koymamız lazım*/}
-              <Table.Cell>{products.productName}</Table.Cell>
+              <Table.Cell><Link to ={`/products/${products.productName}`}>{products.productName}</Link></Table.Cell>
               <Table.Cell>{products.unitPrice}.</Table.Cell>
               <Table.Cell>{products.unitsInStock}</Table.Cell>
               <Table.Cell>{products.quantityPerUnit}</Table.Cell>
