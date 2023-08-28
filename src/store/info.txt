@@ -1,0 +1,8 @@
+Reducer -> bizim state olarak bildiğimiz şey
+Action -> Adı üstünde bir aksiyon bu aksiyonlar sonucu reducer yani state'imizde değişiklikler olucak
+initialValues -> state'lerin başlangıç değeri
+
+
+Sepete ekle butonuna tıklandı -> bu buton reducer'a ilgili action'u yolladı -> reducer baktı dedi ki benim hangi reducer'ımı ilgilendiriyor bu action
+-> ilgilendiren state'i buldu güncelledi -> bu state'i kullananlara da haber verdi
+tarzında bir durum söz konusu

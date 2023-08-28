@@ -4,14 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux'; //Store'u kullanacağını bilsin diye bunu ekledik
+
+import { configureStore } from './store/configureStore';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   //<React.StrictMode> --> Şimdilik hata almamak için kapattık
-  <BrowserRouter>
+  <Provider store={configureStore()}>
+      <BrowserRouter>
       <App /> 
-  </BrowserRouter> //Burada dedik ki bu APP'de route yapacağız haberin olsun
-  //</React.StrictMode>
+  </BrowserRouter>
+</Provider>
+  //React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
