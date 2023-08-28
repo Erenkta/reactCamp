@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   //<React.StrictMode> --> Şimdilik hata almamak için kapattık
-    <App /> //root'a App görünümünü yerleştir
+  <BrowserRouter>
+      <App /> 
+  </BrowserRouter> //Burada dedik ki bu APP'de route yapacağız haberin olsun
   //</React.StrictMode>
 );
 
