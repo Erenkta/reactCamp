@@ -9,7 +9,7 @@ export default function ProductList() {
     let productService = new ProductService()
     productService.getProducts().then(result => setProducts(result.data.data)) // result.data demek bizim JSON objemizi döndür demek. 
     //Onun içindeki data array'ini de almak için data.data yaptık
-  })
+  },[])
 
   return (
     <div>
