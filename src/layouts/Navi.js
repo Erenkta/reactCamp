@@ -5,10 +5,12 @@ import CartSummary from "./CartSummary";
 import SignedIn from "./SignedIn";
 import SignedOut from "./SignedOut";
 import { useNavigate} from "react-router-dom"
+import { useSelector } from "react-redux";
 
 export default function Navi() {
   const [isAuthenticated,setIsAuthenticated] = useState(false)
   const navigate = useNavigate()
+  const {cartItems} = useSelector(state => state.cart)
 
   function handleSign() {
     setIsAuthenticated(!isAuthenticated) //Bunu kendim düşündüm
@@ -23,7 +25,7 @@ export default function Navi() {
           <Menu.Item name="home" />
           <Menu.Item name="messages" />
           <Menu.Menu position="right">
-            <CartSummary />
+           { cartItems.length > 0 &&<CartSummary />}
             {isAuthenticated ? <SignedIn signOut = {handleSign}/> : <SignedOut signIn={handleSign}/>} {/*Alt component'e data gecmek signOut = {handleSignOut} bunlara props denir! */ }
           </Menu.Menu>
         </Container>
