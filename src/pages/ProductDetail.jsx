@@ -8,7 +8,7 @@ export default function ProductDetails() {
 
   //UseParams bize react-router ile gelir ve adres'teki parametreleri almamızı sağlar
 
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState({});
   useEffect(() => {
     let productService = new ProductService();
     productService
@@ -19,7 +19,6 @@ export default function ProductDetails() {
     <div>
       <Card.Group>
         <Card fluid>
-          {product.map((product) => (
             <Card.Content>
               <Card.Header>{product.productName}</Card.Header>
               <Card.Description>
@@ -27,7 +26,6 @@ export default function ProductDetails() {
                 <strong>best friends</strong>
               </Card.Description>
             </Card.Content>
-          ))}
 
           <Card.Content extra>
             <div className="ui two buttons">
