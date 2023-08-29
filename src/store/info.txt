@@ -6,3 +6,6 @@ initialValues -> state'lerin başlangıç değeri
 Sepete ekle butonuna tıklandı -> bu buton reducer'a ilgili action'u yolladı -> reducer baktı dedi ki benim hangi reducer'ımı ilgilendiriyor bu action
 -> ilgilendiren state'i buldu güncelledi -> bu state'i kullananlara da haber verdi
 tarzında bir durum söz konusu
+
+useSelector -> istediğimiz store'u seçmek için kullandığımız hooks
+useDispatch -> action'a abone olmak için kullandığımız hooks

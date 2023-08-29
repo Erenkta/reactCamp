@@ -1,17 +1,27 @@
-import React, { useState,useEffect } from "react";
-import { Icon, Menu, Table } from 'semantic-ui-react'
-import ProductService from "../services/productService"; 
+import React, { useState, useEffect } from "react";
+import { Button, Icon, Menu, Table } from "semantic-ui-react";
+import ProductService from "../services/productService";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../store/actions/cartAction";
+import {toast} from "react-toastify"
 
 export default function ProductList() {
-
-  const [products, setProducts] = useState([]) //Destructuring 
-  useEffect( () =>{ // burada products değişirse sayfa yeniden render edilecek
-    let productService = new ProductService()
-    productService.getProducts().then(result => setProducts(result.data.data)) // result.data demek bizim JSON objemizi döndür demek. 
+  const [products, setProducts] = useState([]); //Destructuring
+  useEffect(() => {
+    // burada products değişirse sayfa yeniden render edilecek
+    let productService = new ProductService();
+    productService
+      .getProducts()
+      .then((result) => setProducts(result.data.data)); // result.data demek bizim JSON objemizi döndür demek.
     //Onun içindeki data array'ini de almak için data.data yaptık
-  },[])
+  }, []);
+  const dispatch = useDispatch();
 
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+    toast.success(`${product.productName} Sepete eklendi`)
+  };
 
   return (
     <div>
@@ -23,21 +33,29 @@ export default function ProductList() {
             <Table.HeaderCell>Stok Adedi</Table.HeaderCell>
             <Table.HeaderCell>Açıklama</Table.HeaderCell>
             <Table.HeaderCell>Kategori</Table.HeaderCell>
+            <Table.HeaderCell> </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
         <Table.Body>
-          {
-            products.map(products => (
-              <Table.Row key={products.id}> {/* Hepsi unique olsun diye map'te key koymamız lazım*/}
-              <Table.Cell><Link to ={`/products/${products.productName}`}>{products.productName}</Link></Table.Cell>
+        {products.map((products) => (
+            <Table.Row key={products.id}>
+
+              {/* Hepsi unique olsun diye map'te key koymamız lazım*/}
+              <Table.Cell>
+                <Link to={`/products/${products.productName}`}>
+                  {products.productName}
+                </Link>
+              </Table.Cell>
               <Table.Cell>{products.unitPrice}.</Table.Cell>
               <Table.Cell>{products.unitsInStock}</Table.Cell>
               <Table.Cell>{products.quantityPerUnit}</Table.Cell>
               <Table.Cell>{products.category.categoryName}</Table.Cell>
+              <Table.Cell>
+                <Button onClick={()=>handleAddToCart(products)}>Sepete Ekle</Button> {/* onClick'e fonksiyon atamak demek () => ile kullanılır */}
+              </Table.Cell>
             </Table.Row>
-            ))
-          }
+          ))}
         </Table.Body>
 
         <Table.Footer>

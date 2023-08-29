@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux'; //Store'u kullanacağını bilsin diye bunu ekledik
+import "react-toastify/dist/ReactToastify.min.css"
 
 import { configureStore } from './store/configureStore';
 
