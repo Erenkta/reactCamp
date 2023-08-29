@@ -1,7 +1,8 @@
 import React from "react";
-import { Formik, Form,Field } from "formik";
+import { Formik, Form,Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { FormField, Button } from "semantic-ui-react";
+import { FormField, Button, Label } from "semantic-ui-react";
+import CustomTextInput from "../utilities/customFormControls/CustomTextInput";
 
 export default function ProductAdd() {
   const initialValues = { productName: "", unitPrice: 10 };
@@ -20,12 +21,8 @@ export default function ProductAdd() {
       }}
       >
         <Form className="ui form">
-          <FormField>
-            <Field name="productName" placeholder="Ürün adı"></Field>
-          </FormField>
-          <FormField>
-            <Field name="unitPrice" placeholder="Ürün fiyatı"></Field>
-          </FormField>
+        <CustomTextInput name="productName" placeholder="Ürün adı" />
+        <CustomTextInput name="unitPrice" placeholder="Ürün fiyatı" message={"HATA ULAN HATA"}/>
           <Button color="green" type="submit">Ekle</Button>
         </Form>
       </Formik>
