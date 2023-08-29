@@ -38,7 +38,7 @@ export default function ProductList() {
         </Table.Header>
 
         <Table.Body>
-          {products.map((products) => (
+        {products.map((products) => (
             <Table.Row key={products.id}>
 
               {/* Hepsi unique olsun diye map'te key koymamız lazım*/}
